@@ -409,7 +409,94 @@
 */
 
 
-//ex7
+////ex7,8
+//#include <time.h>
+//#define LIST_SIZE 30
+//
+//typedef struct _int {
+//	int data;
+//	struct _int* next;
+//	struct _int* prev;
+//}Int;
+//
+//void input(Int** start_node, Int** end_node, Int* new_node) {
+//	if (*start_node == NULL) {
+//		*start_node = (Int*)malloc(sizeof(Int));
+//		*end_node = (Int*)malloc(sizeof(Int));
+//		*start_node = *end_node = new_node;
+//	}
+//	else {
+//		(*end_node)->next = new_node;
+//		new_node->prev = (*end_node);
+//		new_node = (*end_node);
+//		*end_node = (*end_node)->next;
+//	}
+//}
+//
+//void delete_odd(Int** start,Int** cur, Int** end) {
+//	*start = (*start)->next;
+//	(*start)->prev = NULL;
+//	*cur = *start;
+//	*cur = (*cur)->next;
+//
+//	for (int i = 2; i < LIST_SIZE-1; i+=2)
+//	{
+//		(*cur)->prev->next = (*cur)->next;
+//		(*cur)->next->prev = (*cur)->prev;
+//		(*cur) = (*cur)->next->next;
+//	}
+//
+//}
+//
+//int main() {
+//	Int* start = NULL, * end = NULL, * cur = NULL;
+//	Int* new_node;
+//
+//	srand(time(NULL));
+//
+//	for (int i = 0; i < LIST_SIZE; i++)
+//	{
+//		new_node = (Int*)malloc(sizeof(Int));
+//		new_node->data = (int)rand()%100;
+//		new_node->next = NULL;
+//		new_node->prev = NULL;
+//		input(&start, &end, new_node);
+//	}
+//
+//	printf("\n== 삭제 전 ==\n");
+//	cur = start;
+//	for (int i = 0; i < LIST_SIZE; i++)
+//	{
+//		if (i%5==0) printf("\n");
+//		printf("%d ", cur->data);
+//		cur = cur->next;
+//	}
+//
+//	cur = start;
+//	delete_odd(&start,&cur, &end);
+//
+//	printf("\n== 삭제 후 ==\n");
+//	cur = start;
+//	for (int i = 0; i < LIST_SIZE/2; i++)
+//	{
+//		if (i % 5 == 0) printf("\n");
+//		printf("%d ", cur->data);
+//		cur = cur->next;
+//	}
+//
+//	printf("\n== 삭제 후 역 ==\n");
+//	cur = start;
+//	for (int i = 0; i < LIST_SIZE / 2; i++)
+//	{
+//		if (i % 5 == 0) printf("\n");
+//		printf("%d ", end->data);
+//		end = end->prev;
+//	}
+//
+//}
+
+
+ //ex 9,10
 #include <time.h>
 #define LIST_SIZE 30
 
@@ -433,15 +520,19 @@ void input(Int** start_node, Int** end_node, Int* new_node) {
 	}
 }
 
-void delete_odd(Int* start) {
-	start = start->next;
-	Int* tmp = start;
-	for (int i = 1; i < LIST_SIZE; i+=2)
+void delete_odd(Int** start, Int** cur, Int** end) {
+	*start = (*start)->next;
+	(*start)->prev = NULL;
+	*cur = *start;
+	*cur = (*cur)->next;
+
+	for (int i = 2; i < LIST_SIZE - 1; i += 2)
 	{
-		tmp->prev->next = tmp->next;
-		tmp->next->prev = tmp->prev;
-		tmp = tmp->next->next;
+		(*cur)->prev->next = (*cur)->next;
+		(*cur)->next->prev = (*cur)->prev;
+		(*cur) = (*cur)->next->next;
 	}
+
 }
 
 int main() {
@@ -453,7 +544,7 @@ int main() {
 	for (int i = 0; i < LIST_SIZE; i++)
 	{
 		new_node = (Int*)malloc(sizeof(Int));
-		new_node->data = (int)rand()%100;
+		new_node->data = (int)rand() % 100;
 		new_node->next = NULL;
 		new_node->prev = NULL;
 		input(&start, &end, new_node);
@@ -463,15 +554,26 @@ int main() {
 	cur = start;
 	for (int i = 0; i < LIST_SIZE; i++)
 	{
-		if (i%5==0) printf("\n");
-		printf("%d ", start->data);
-		start = start->next;
+		if (i % 5 == 0) printf("\n");
+		printf("%d ", cur->data);
+		cur = cur->next;
 	}
 
-	delete_odd(start);
+	cur = start;
+	delete_odd(&start, &cur, &end);
+
 	printf("\n== 삭제 후 ==\n");
 	cur = start;
-	for (int i = 0; i < LIST_SIZE; i++)
+	for (int i = 0; i < LIST_SIZE / 2; i++)
+	{
+		if (i % 5 == 0) printf("\n");
+		printf("%d ", cur->data);
+		cur = cur->next;
+	}
+
+	printf("\n== 삭제 후 역 ==\n");
+	cur = start;
+	for (int i = 0; i < LIST_SIZE / 2; i++)
 	{
 		if (i % 5 == 0) printf("\n");
 		printf("%d ", end->data);
@@ -479,3 +581,4 @@ int main() {
 	}
 
 }
+
