@@ -595,210 +595,217 @@ c
 //}
 //
 
-//ex 11
-int list_size = 0;
-
-typedef struct _std {
-	int id;
-	char name[20];
-	int kor;
-	int eng;
-	int math;
-	struct _std* next;
-}StdInfo;
-
-void concat(StdInfo** start_node, StdInfo** end_node, StdInfo* new_node) {
-	if (*start_node == NULL) {
-		*start_node = *end_node = new_node;
-	}
-	else {
-		(*end_node)->next = new_node;
-		*end_node = new_node;
-		(*end_node)->next = NULL;
-	}
-}
-
-void input(StdInfo** new_node) {
-	char buf[20];
-	printf("학번 : ");
-	scanf("%d", &(*new_node)->id);
-	printf("이름 : ");
-	scanf("%s", buf);
-	strcpy((*new_node)->name, buf);
-	printf("국어 : ");
-	scanf("%d", &(*new_node)->kor);
-	printf("영어 : ");
-	scanf("%d", &(*new_node)->eng);
-	printf("수학 : ");
-	scanf("%d", &(*new_node)->math);
-}
-
-StdInfo* search(int key, StdInfo** cur) {
-	while ((*cur) != NULL) {
-		if ((*cur)->id == key) {
-			return (*cur);
-		}
-		(*cur) = (*cur)->next;
-	}
-	StdInfo* tmp = (StdInfo*)malloc(sizeof(StdInfo));
-	tmp->id = -1;
-	return tmp;
-}
-
-int del(int key, StdInfo** cur, StdInfo** start) {
-	if ((*start) == NULL) return -1;
-	else if ((*start)->id == key) {
-		(*start) = (*start)->next;
-		return 0;
-	}
-	while ((*cur)->next != NULL) {
-		if ((*cur)->next->id == key) {
-			(*cur)->next = (*cur)->next->next;
-			return 0;
-		}
-		(*cur) = (*cur)->next;
-	}
-	if ((*cur)->next->id == key) {
-		(*cur)->next = NULL;
-		return 0;
-	}
-	return -1;
-}
-
-void sort(StdInfo** start, StdInfo** end) {
-	StdInfo** arc = (StdInfo**)malloc(list_size * sizeof(StdInfo*));
-	StdInfo* cur=* start;
-	cur = start;
-	for (int i = 0; i < list_size; i++)
-	{
-		arc[i] = cur;
-		(*cur) = (*cur)->next;
-	}
-
-	cur = start;
-	while ((*cur) != NULL) {
-		printf("%d\t%s\t%d\t%d\t%d\n", (*cur)->id, (*cur)->name, (*cur)->kor, (*cur)->eng, (*cur)->math);
-		(*cur) = (*cur)->next;
-	}
-
-	StdInfo tmp_std;
-
-	for (int i = 0; i < list_size-1; i++)
-	{
-		if (arc[i]->id > arc[i + 1]->id) {
-			tmp_std = (*arc[i]);
-			(*arc[i]) = (*arc[i + 1]);
-			(*arc[i + 1]) = tmp_std;
-			arc[i + 1]->next = arc[i];
-			arc[i]->next = arc[i+1]->next;
-		}
-	}
-
-	cur = start;
-	while ((*cur) != NULL) {
-		printf("%d\t%s\t%d\t%d\t%d\n", (*cur)->id, (*cur)->name, (*cur)->kor, (*cur)->eng, (*cur)->math);
-		(*cur) = (*cur)->next;
-	}
-}
-
-int main() {
-	StdInfo* start = NULL, * end = NULL, * cur = NULL;
-	StdInfo* new_node;
-
-	int sel;
-	int tmp = 0;
-	char flag;
-	char buf[20];
-
-	while (1) {
-		printf("1.입력\t2.출력\t3.검색\t4.변경\t5.삭제\t6.삽입\t7.정렬\t8.종료\n==> 선택 ");
-		scanf("%d", &sel);
-		switch (sel)
-		{
-		case 1:
-			while (1) {
-				list_size++;
-				new_node = (StdInfo*)malloc(sizeof(StdInfo));
-				input(&new_node);
-				concat(&start, &end, new_node);
-				printf("계속?(y/n) ");
-				scanf("%c", &flag);
-				scanf("%c", &flag);
-				if (flag == 'n') break;
-			}
-
-			printf("입력완료\n\n");
-			break;
-		case 2:
-			cur = start;
-			while (cur != NULL) {
-				printf("%d\t%s\t%d\t%d\t%d\n", cur->id, cur->name, cur->kor, cur->eng, cur->math);
-				cur = cur->next;
-			}
-			break;
-		case 3:
-			cur = start;
-			printf("학번 : ");
-			scanf("%d", &tmp);
-			cur = search(tmp, &cur);
-			if (cur->id == -1) {
-				printf("해당정보를 찾을 수 없습니다.\n\n");
-			}
-			else {
-				printf("검색완료\n\n");
-				printf("%d\t%s\t%d\t%d\t%d\n", cur->id, cur->name, cur->kor, cur->eng, cur->math);
-			}
-			break;
-		case 4:
-			cur = start;
-			printf("학번 : ");
-			scanf("%d", &tmp);
-			cur = search(tmp, &cur);
-			if (cur->id == -1) {
-				printf("해당정보를 찾을 수 없습니다.\n\n");
-			}
-			else {
-				input(&cur);
-				printf("수정완료\n\n");
-			}
-			break;
-		case 5:
-			cur = start;
-			printf("학번 : ");
-			scanf("%d", &tmp);
-			if (del(tmp, &cur, &start) == -1) {
-				printf("해당정보를 찾을 수 없습니다.\n\n");
-			}
-			else {
-				printf("삭제완료\n\n");
-				list_size--;
-			}
-			break;
-		case 6:
-			list_size++;
-			cur = start;
-			printf("몇 번째?");
-			scanf("%d", &tmp);
-			for (int i = 0; i < tmp-2; i++) cur = cur->next;
-
-			new_node = (StdInfo*)malloc(sizeof(StdInfo));
-			input(&new_node);
-
-			new_node->next = cur->next;
-			cur->next = new_node;
-			break;
-		case 7:
-			cur = start;
-			sort(&start, &cur, &end);
-			break;
-		case 8:
-			return;
-		default:
-			break;
-		}
-	}
-}
-
+////ex 11
+//int list_size = 0;
+//
+//typedef struct _std {
+//	int id;
+//	char name[20];
+//	int kor;
+//	int eng;
+//	int math;
+//	struct _std* next;
+//}StdInfo;
+//
+//void concat(StdInfo** start_node, StdInfo** end_node, StdInfo* new_node) {
+//	if (*start_node == NULL) {
+//		*start_node = *end_node = new_node;
+//	}
+//	else {
+//		(*end_node)->next = new_node;
+//		*end_node = new_node;
+//		(*end_node)->next = NULL;
+//	}
+//}
+//
+//void input(StdInfo** new_node) {
+//	char buf[20];
+//	printf("학번 : ");
+//	scanf("%d", &(*new_node)->id);
+//	printf("이름 : ");
+//	scanf("%s", buf);
+//	strcpy((*new_node)->name, buf);
+//	printf("국어 : ");
+//	scanf("%d", &(*new_node)->kor);
+//	printf("영어 : ");
+//	scanf("%d", &(*new_node)->eng);
+//	printf("수학 : ");
+//	scanf("%d", &(*new_node)->math);
+//}
+//
+//StdInfo* search(int key, StdInfo** cur) {
+//	while ((*cur) != NULL) {
+//		if ((*cur)->id == key) {
+//			return (*cur);
+//		}
+//		(*cur) = (*cur)->next;
+//	}
+//	StdInfo* tmp = (StdInfo*)malloc(sizeof(StdInfo));
+//	tmp->id = -1;
+//	return tmp;
+//}
+//
+//int del(int key, StdInfo** cur, StdInfo** start) {
+//	if ((*start) == NULL) return -1;
+//	else if ((*start)->id == key) {
+//		(*start) = (*start)->next;
+//		return 0;
+//	}
+//	while ((*cur)->next != NULL) {
+//		if ((*cur)->next->id == key) {
+//			(*cur)->next = (*cur)->next->next;
+//			return 0;
+//		}
+//		(*cur) = (*cur)->next;
+//	}
+//	if ((*cur)->next->id == key) {
+//		(*cur)->next = NULL;
+//		return 0;
+//	}
+//	return -1;
+//}
+//
+//void sort(StdInfo** start, StdInfo** end) {
+//	StdInfo** arc = (StdInfo**)malloc(list_size * sizeof(StdInfo*));
+//	StdInfo* cur = *start;
+//	for (int i = 0; i < list_size; i++)
+//	{
+//		arc[i] = cur;
+//		cur =cur->next;
+//	}
+//
+//	//cur = *start;
+//	//int i = 0;
+//	//while (cur != NULL) {
+//	//	printf("%d\t%s\t%d\t%d\t%d\n", cur->id, cur->name, cur->kor, cur->eng, cur->math);
+//	//	printf("%d\t%s\t%d\t%d\t%d\n", arc[i]->id, arc[i]->name, arc[i]->kor, arc[i]->eng, arc[i]->math);
+//	//	cur = cur->next;
+//	//	i++;
+//	//}
+//	//printf("\n\n");
+//
+//	StdInfo tmp_std;
+//
+//	for (int i = 0; i < list_size-1; i++)
+//	{
+//		if (arc[i]->id > arc[i + 1]->id) {
+//			tmp_std = (*arc[i]);
+//			(*arc[i]) = (*arc[i + 1]);
+//			(*arc[i + 1]) = tmp_std;
+//			arc[i + 1]->next = arc[i]->next;
+//			arc[i]->next = arc[i+1];
+//		}
+//	}
+//
+//	//cur = *start;
+//	//while (cur != NULL) {
+//	//	printf("%d\t%s\t%d\t%d\t%d\n", cur->id, cur->name, cur->kor, cur->eng, cur->math);
+//	//	cur = cur->next;
+//	//}
+//}
+//
+//int main() {
+//	StdInfo* start = NULL, * end = NULL, * cur = NULL;
+//	StdInfo* new_node;
+//
+//	int sel;
+//	int tmp = 0;
+//	char flag;
+//	char buf[20];
+//
+//	while (1) {
+//		printf("1.입력\t2.출력\t3.검색\t4.변경\t5.삭제\t6.삽입\t7.정렬\t8.종료\n==> 선택 ");
+//		scanf("%d", &sel);
+//		switch (sel)
+//		{
+//		case 1:
+//			while (1) {
+//				list_size++;
+//				new_node = (StdInfo*)malloc(sizeof(StdInfo));
+//				input(&new_node);
+//				concat(&start, &end, new_node);
+//				printf("계속?(y/n) ");
+//				scanf("%c", &flag);
+//				scanf("%c", &flag);
+//				if (flag == 'n') break;
+//			}
+//
+//			printf("입력완료\n\n");
+//			break;
+//		case 2:
+//			cur = start;
+//			while (cur != NULL) {
+//				printf("%d\t%s\t%d\t%d\t%d\n", cur->id, cur->name, cur->kor, cur->eng, cur->math);
+//				cur = cur->next;
+//			}
+//			break;
+//		case 3:
+//			cur = start;
+//			printf("학번 : ");
+//			scanf("%d", &tmp);
+//			cur = search(tmp, &cur);
+//			if (cur->id == -1) {
+//				printf("해당정보를 찾을 수 없습니다.\n\n");
+//			}
+//			else {
+//				printf("검색완료\n\n");
+//				printf("%d\t%s\t%d\t%d\t%d\n", cur->id, cur->name, cur->kor, cur->eng, cur->math);
+//			}
+//			break;
+//		case 4:
+//			cur = start;
+//			printf("학번 : ");
+//			scanf("%d", &tmp);
+//			cur = search(tmp, &cur);
+//			if (cur->id == -1) {
+//				printf("해당정보를 찾을 수 없습니다.\n\n");
+//			}
+//			else {
+//				input(&cur);
+//				printf("수정완료\n\n");
+//			}
+//			break;
+//		case 5:
+//			cur = start;
+//			printf("학번 : ");
+//			scanf("%d", &tmp);
+//			if (del(tmp, &cur, &start) == -1) {
+//				printf("해당정보를 찾을 수 없습니다.\n\n");
+//			}
+//			else {
+//				printf("삭제완료\n\n");
+//				list_size--;
+//			}
+//			break;
+//		case 6:
+//			list_size++;
+//			cur = start;
+//			printf("몇 번째?");
+//			scanf("%d", &tmp);
+//			for (int i = 0; i < tmp-2; i++) cur = cur->next;
+//
+//			new_node = (StdInfo*)malloc(sizeof(StdInfo));
+//			input(&new_node);
+//
+//			new_node->next = cur->next;
+//			cur->next = new_node;
+//			break;
+//		case 7:
+//			sort(&start, &end);
+//			cur = start;
+//			while (cur != NULL) {
+//				printf("%d\t%s\t%d\t%d\t%d\n", cur->id, cur->name, cur->kor, cur->eng, cur->math);
+//				cur = cur->next;
+//			}
+//			break;
+//		case 8:
+//			return;
+//		default:
+//			break;
+//		}
+//	}
+//}
+//
 /*
 1
 100
@@ -852,5 +859,258 @@ ZZZ
 99
 99
 2
+7
+
+*/
+
+
+//ex 11
+int list_size = 0;
+
+typedef struct _std {
+	char name[20];
+	int phone_num;
+	int birth;
+	struct _std* next;
+	struct _std* prev;
+}StdInfo;
+
+void concat(StdInfo** start_node, StdInfo** end_node, StdInfo* new_node) {
+	if (*start_node == NULL) {
+		*start_node = *end_node = new_node;
+	}
+	else {
+		(*end_node)->next = new_node;
+		new_node->prev = (*end_node);
+		*end_node = new_node;
+		(*end_node)->next = NULL;
+	}
+}
+
+void input(StdInfo** new_node) {
+	char buf[20];
+	printf("이름 : ");
+	scanf("%s", buf);
+	strcpy((*new_node)->name, buf);
+	printf("전화번호 : "); 
+	scanf("%d", &(*new_node)->phone_num);
+	printf("생일 : ");
+	scanf("%d", &(*new_node)->birth);
+}
+
+StdInfo* search(char* key, StdInfo** cur) {
+	while ((*cur) != NULL) {
+		if (strcmp((*cur)->name, key)==0) {
+			return (*cur);
+		}
+		(*cur) = (*cur)->next;
+	}
+	StdInfo* tmp = (StdInfo*)malloc(sizeof(StdInfo));
+	tmp->phone_num = -1;
+	return tmp;
+}
+
+int del(char* key, StdInfo** start, StdInfo** del) {
+	StdInfo* cur = *start;
+	if ((*start) == NULL) return -1;
+	else if (strcmp((*start)->name, key)==0) {
+		(*start) = (*start)->next;
+		return 0;
+	}
+	while (cur->next != NULL) {
+		if (strcmp(cur->next->name, key)==0) {
+			cur->next = cur->next->next;
+			return 0;
+		}
+		cur = cur->next;
+	}
+	if (strcmp(cur->name, key)==0) {
+		cur->next = NULL;
+		(*del) = cur;
+		return 0;
+	}
+	return -1;
+}
+
+void sort(StdInfo** start, StdInfo** end) {
+	StdInfo** arc = (StdInfo**)malloc(list_size * sizeof(StdInfo*));
+	StdInfo* cur = *start;
+	for (int i = 0; i < list_size; i++)
+	{
+		arc[i] = cur;
+		cur = cur->next;
+	}
+
+	//cur = *start;
+	//int i = 0;
+	//while (cur != NULL) {
+	//	printf("%d\t%s\t%d\t%d\t%d\n", cur->id, cur->name, cur->kor, cur->eng, cur->math);
+	//	printf("%d\t%s\t%d\t%d\t%d\n", arc[i]->id, arc[i]->name, arc[i]->kor, arc[i]->eng, arc[i]->math);
+	//	cur = cur->next;
+	//	i++;
+	//}
+	//printf("\n\n");
+
+	StdInfo tmp_std;
+
+	for (int i = 0; i < list_size - 1; i++)
+	{
+		if (strcmp(arc[i]->name, arc[i + 1]->name)>0) {
+			tmp_std = (*arc[i]);
+			(*arc[i]) = (*arc[i + 1]);
+			(*arc[i + 1]) = tmp_std;
+			arc[i + 1]->next = arc[i]->next;
+			arc[i]->next = arc[i + 1];
+		}
+	}
+
+	//cur = *start;
+	//while (cur != NULL) {
+	//	printf("%d\t%s\t%d\t%d\t%d\n", cur->id, cur->name, cur->kor, cur->eng, cur->math);
+	//	cur = cur->next;
+	//}
+}
+
+int main() {
+	StdInfo* start = NULL, * end = NULL, * cur = NULL;
+	StdInfo* new_node;
+
+	int sel;
+	int tmp = 0;
+	char flag;
+	char buf[20];
+
+	while (1) {
+		printf("1.입력\t2.출력\t3.검색\t4.변경\t5.삭제\t6.삽입\t7.정렬\t8.종료\n==> 선택 ");
+		scanf("%d", &sel);
+		switch (sel)
+		{
+		case 1:
+			while (1) {
+				list_size++;
+				new_node = (StdInfo*)malloc(sizeof(StdInfo));
+				input(&new_node);
+				concat(&start, &end, new_node);
+				printf("계속?(y/n) ");
+				scanf("%c", &flag);
+				scanf("%c", &flag);
+				if (flag == 'n') break;
+			}
+
+			printf("입력완료\n\n");
+			break;
+		case 2:
+			cur = start;
+			while (cur != NULL) {
+				printf("%s\t%d\t%d\n", cur->name, cur->phone_num, cur->birth);
+				cur = cur->next;
+			}
+			break;
+		case 3:
+			cur = start;
+			printf("이름 : ");
+			scanf("%s", buf);
+			cur = search(buf, &cur);
+			if (cur->phone_num == -1) {
+				printf("해당정보를 찾을 수 없습니다.\n\n");
+			}
+			else {
+				printf("검색완료\n\n");
+				printf("%s\t%d\t%d\n", cur->name, cur->phone_num, cur->birth);
+			}
+			break;
+		case 4:
+			cur = start;
+			printf("이름 : ");
+			scanf("%s", buf);
+			cur = search(buf, &cur);
+			if (cur->phone_num == -1) {
+				printf("해당정보를 찾을 수 없습니다.\n\n");
+			}
+			else {
+				input(&cur);
+				printf("수정완료\n\n");
+			}
+			break;
+		case 5:
+			cur = start;
+			printf("이름 : ");
+			scanf("%s", buf);
+			if (del(buf, &start, &end) == -1) {
+				printf("해당정보를 찾을 수 없습니다.\n\n");
+			}
+			else {
+				printf("삭제완료\n\n");
+				list_size--;
+			}
+			break;
+		case 6:
+			list_size++;
+			cur = start;
+			printf("몇 번째?");
+			scanf("%d", &tmp);
+			for (int i = 0; i < tmp - 2; i++) cur = cur->next;
+
+			new_node = (StdInfo*)malloc(sizeof(StdInfo));
+			input(&new_node);
+
+			new_node->next = cur->next;
+			cur->next = new_node;
+			break;
+		case 7:
+			sort(&start, &end);
+			cur = start;
+			while (cur != NULL) {
+				printf("%s\t%d\t%d\n", cur->name, cur->phone_num, cur->birth);
+				cur = cur->next;
+			}
+			break;
+		case 8:
+			return;
+		default:
+			break;
+		}
+	}
+}
+
+/*
+1
+AAA
+1001
+1208
+y
+BBB
+1010
+11030
+y
+CCC
+1011
+10103
+y
+DDD
+1080
+11108
+y
+EEE
+1031
+10520
+n
+2
+3
+BBB
+4
+BBB
+1010
+10101
+5
+CCC
+2
+6
+2
+ZZZ
+999
+9999
+2
+7
 
 */
