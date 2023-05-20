@@ -665,13 +665,15 @@ int del(int key, StdInfo** cur, StdInfo** start) {
 	return -1;
 }
 
-void sort(StdInfo** start, StdInfo** end) {
+void sort(StdInfo** start, StdInfo** cur, StdInfo** end) {
 	StdInfo** arc = (StdInfo**)malloc(list_size * sizeof(StdInfo*));
-	StdInfo* cur=* start;
+	char tmp_str[20];
+	int tmp_int;
+
 	cur = start;
 	for (int i = 0; i < list_size; i++)
 	{
-		arc[i] = cur;
+		arc[i] = (*cur);
 		(*cur) = (*cur)->next;
 	}
 
