@@ -216,6 +216,241 @@
 //}
 
 
-//==================
+//========pr시작==========
 
-//ex1
+////pr01
+//int main() {
+//	FILE* fp;
+//	fp = fopen("c:\\tmp\\data.txt", "w");
+//	
+//	if (fp == NULL) {
+//		printf("fderr\n");
+//		return 1;
+//	}
+//
+//	fprintf(fp,"사과\t100\t5\n");
+//	fprintf(fp,"오렌지\t200\t3\n");
+//
+//	fclose(fp);
+//	return 0;
+//}
+
+////pr02
+//int main() {
+//	FILE* fp;
+//	fp = fopen("c:\\tmp\\data.txt", "w");
+//	
+//	if (fp == NULL) {
+//		printf("fderr\n");
+//		return 1;
+//	}
+//
+//	fprintf(fp, "*** 매출현황 ***\n");
+//	fprintf(fp,"사과\t100\t5\t500\n");
+//	fprintf(fp,"오렌지\t200\t3\t600\n");
+//	fprintf(fp,"-----------------------------\n");
+//	fprintf(fp,"합\t300\t8\t1100\n");
+//
+//	fclose(fp);
+//
+//	fp = fopen("c:\\tmp\\data.txt", "r");
+//
+//	if (fp == NULL) {
+//		printf("fderr\n");
+//		return 1;
+//	}
+//
+//	char c;
+//	while ((c = fgetc(fp) )!= EOF) {
+//		putchar(c);
+//	}
+//
+//	fclose(fp);
+//	return 0;
+//}
+
+////pr03
+//int main() {
+//	char buf[100];
+//	FILE* fp;
+//	fp = fopen("c:\\tmp\\data.txt", "w");
+//
+//	if (fp == NULL) {
+//		printf("fderr\n");
+//		return 1;
+//	}
+//
+//	for (int i = 0; i < 2; i++)
+//	{
+//		printf("주민번호 : ");
+//		scanf("%s", buf);
+//		strcat(buf,"\t");
+//		fprintf(fp, buf);
+//
+//		printf("이름 : ");
+//		scanf("%s", buf);
+//		strcat(buf, "\t");
+//		fprintf(fp, buf);
+//
+//		printf("성별 : ");
+//		scanf("%s", buf);
+//		strcat(buf, "\t");
+//		fprintf(fp, buf);
+//
+//		printf("전화번호 : ");
+//		scanf("%s", buf);
+//		strcat(buf, "\t");
+//		fprintf(fp, buf);
+//
+//		printf("주소 : ");
+//		scanf("%s", buf);
+//		strcat(buf, "\n");
+//		fprintf(fp, buf);
+//	}
+//
+//	fclose(fp);
+//	return 0;
+//}
+
+////pr04
+//int main() {
+//	char buf[100];
+//	FILE* fp;
+//	fp = fopen("c:\\tmp\\data.txt", "r");
+//
+//	if (fp == NULL) {
+//		printf("fderr\n");
+//		return 1;
+//	}
+//
+//	char* s;
+//
+//	printf("주민번호\t이름\t생년월일\t성별\t전화번호\t주소\n");
+//
+//	int cnt = 0;
+//	while (1) {
+//		//if (cnt++ % 6 == 0) printf("\n");
+//		if (s = fgets(buf, sizeof(buf), fp) == NULL) break;
+//		printf("%s", buf);
+//	}
+//
+//	fclose(fp);
+//	return 0;
+//}
+
+////pr05
+//int main() {
+//	char src[100];
+//	char dst[100];
+//	FILE* fp;
+//	fp = fopen("c:\\tmp\\data.txt", "r");
+//
+//	if (fp == NULL) {
+//		printf("fderr\n");
+//		return 1;
+//	}
+//
+//	fgets(src, sizeof(src), fp);
+//	fgets(dst, sizeof(dst), fp);
+//
+//	int cnt = 0;
+//	for (int i = 0; i < 100; i++)
+//	{
+//		if (src[i] == dst[i]) cnt++;
+//		else break;
+//	}
+//
+//	printf("앞에서 %d글자가 동일합니다.",cnt);
+//
+//	fclose(fp);
+//	return 0;
+//}
+
+//pr06
+typedef struct _product
+{
+	char name[20];
+	int quantity;
+	int price;
+}Product;
+
+Product input() {
+	Product tmp;
+
+	printf("품목 : ");
+	scanf("%s", tmp.name);
+
+	printf("수량 : ");
+	scanf("%d", &tmp.quantity);
+
+	printf("단가 : ");
+	scanf("%d", &tmp.price);
+
+	return tmp;
+}
+
+void save(Product pr) {
+	FILE* fp;
+	fp = fopen("c:\\tmp\\data.txt", "a");
+	char buf[100];
+
+	strcat(pr.name, "\t");
+	fprintf(fp, pr.name);
+
+	itoa(pr.quantity, buf, 10);
+	strcat(buf, "\t");
+	fprintf(fp, buf);
+
+	itoa(pr.price, buf, 10);
+	strcat(buf, "\n");
+	fprintf(fp, buf);
+
+	fclose(fp);
+}
+
+void read() {
+	FILE* fp;
+	fp = fopen("c:\\tmp\\data.txt", "r");
+	char buf[100];
+
+	printf("품목\t수량\t단가\n");
+
+	while (1) {
+		if (fgets(buf, sizeof(buf), fp) == NULL) break;
+		printf("%s", buf);
+	}
+}
+
+int main() {
+	int sel;
+	Product tmp;
+
+	while (1) {
+		printf("\n== 매뉴 ==\n");
+		printf("1. 데이터 입력\n");
+		printf("2. 파일에 저장\n");
+		printf("3. 파일에서 읽어오기\n");
+		printf("4. 종료\n");
+		
+		printf("==> ");
+		scanf("%d", &sel);
+
+		switch (sel)
+		{
+		case 1:
+			tmp=input();
+			break;
+		case 2:
+			save(tmp);
+			break;
+		case 3:
+			read();
+			break;
+		case 4:
+			return;
+		default:
+			break;
+		}
+	}
+
+}
