@@ -1,24 +1,34 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct {
-	int val;
-}Int;
-
-void test(int *a) {
-	(*a)--;
-}
-
-void test_st(Int* b) {
-	(*b).val--;
-}
+#include <windows.h>
 
 int main() {
-	int* a;
-	*a = 1;
-	test(a);
+    srand(time(NULL));
 
-	Int* b = (Int*)malloc(sizeof(Int));
-	(*b).val = 1;
-	test(b);
+    while (1) {
+        switch (rand() % 5)
+        {
+        case 0:
+            printf("µµ\n");
+            break;
+        case 1:
+            printf("°³\n");
+            break;
+        case 2:
+            printf("°É\n");
+            break;
+        case 3:
+            printf("À·\n");
+            break;
+        case 4:
+            printf("¸ð\n");
+            break;
+        default:
+            break;
+        }
+
+        Sleep(1000);
+    }
+
+    return 0;
 }
