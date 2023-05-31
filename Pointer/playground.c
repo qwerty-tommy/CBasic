@@ -1,34 +1,30 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <windows.h>
 
 int main() {
-    srand(time(NULL));
+    int data[32] = {
+        0xAC, 0xF3, 0x0C, 0x25, 0xA3, 0x10, 0xB7, 0x25, 0x16, 0xC6, 0xB7, 0xBC, 7,0x25, 2, 0xD5, 0xC6, 0x11, 7, 0xC5, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
+    };
 
-    while (1) {
-        switch (rand() % 5)
+    int ans[21] = { 0, };
+
+    for (int i = 0; i < 21; i++)
+    {
+        for (int j = 0; j < 200; j++)
         {
-        case 0:
-            printf("µµ\n");
-            break;
-        case 1:
-            printf("°³\n");
-            break;
-        case 2:
-            printf("°É\n");
-            break;
-        case 3:
-            printf("À·\n");
-            break;
-        case 4:
-            printf("¸ð\n");
-            break;
-        default:
-            break;
+            if (((-5 * j) & 0xff) == data[i]) {
+                ans[i] = j;
+            }
         }
 
-        Sleep(1000);
     }
+
+    for (int i = 0; i < 21; i++)
+    {
+        printf("%c", ans[i]);
+    }
+
 
     return 0;
 }
+
+

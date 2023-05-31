@@ -357,26 +357,60 @@
 //	return 0;
 //}
 
-//pr13
-typedef struct _node {
-	int data;
-	struct _node* left;
-	struct _node* right;
-}Node;
+////pr13
+//typedef struct _node {
+//	int data;
+//	int idx;
+//	struct _node* left;
+//	struct _node* right;
+//}Node;
+//
+//void generate_tree(Node** root, int* list) {
+//	Node* tmp;
+//	
+//	(*root)->data = list[0];
+//	(*root)->left = NULL;
+//	(*root)->right = NULL;
+//	(*root)->idx = 0;
+//
+//	for (int i = 1; i < 10; i++)
+//	{	
+//		tmp = (Node*)malloc(sizeof(Node));
+//		tmp->data = list[i];
+//		tmp->idx = i;
+//		tmp->left = NULL;
+//		tmp->left = NULL;
+//		if ((*root)->data<list[i]) {
+//
+//		}
+//	}
+//}
+//
+//int bin_search(Node* node, int target) {
+//
+//}
+//
+//int main() {
+//	int list[10] = { 7,4,1,3,5,6,2,8,9,0 };
+//	Node *root=(Node*)malloc(sizeof(Node));
+//	generate_tree(&root, list);
+//	printf("탐색성공\n인덱스 : %d",bin_search(root, 6));
+//}
 
-void generate_tree(Node* node, int* list) {
+//pr14
 
-}
+int pow(int a, int b) {
+	if (b == 0) return 0;
+	if (b == 1) return a;
 
-int bin_search(Node* node, int target) {
-
+	if (b % 2 == 1) return pow(a, b / 2 + 1) * pow(a, b / 2);
+	if (b % 2 == 0) return pow(a, b / 2) * pow(a, b / 2);
 }
 
 int main() {
-	int list[10] = { 7,4,1,3,5,6,2,8,9,0 };
-	Node *root=(Node*)malloc(sizeof(Node));
-	root->left = NULL;
-	root->right = NULL;
-	list[]
+	int a, b;
+	printf("어떤 수의 몇 승을 구할까요? ");
+	scanf("%d %d", &a, &b);
 
+	printf("%d", pow(a, b));
 }
