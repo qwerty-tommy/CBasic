@@ -357,60 +357,57 @@
 //	return 0;
 //}
 
-////pr13
-//typedef struct _node {
-//	int data;
-//	int idx;
-//	struct _node* left;
-//	struct _node* right;
-//}Node;
+//////pr13
+//int rec(int* arr, int target, int start, int end) {
+//	if ((start >= end) && (arr[start]!=target)) return -1;
 //
-//void generate_tree(Node** root, int* list) {
-//	Node* tmp;
-//	
-//	(*root)->data = list[0];
-//	(*root)->left = NULL;
-//	(*root)->right = NULL;
-//	(*root)->idx = 0;
+//	int mid = (start + end) / 2;
 //
-//	for (int i = 1; i < 10; i++)
-//	{	
-//		tmp = (Node*)malloc(sizeof(Node));
-//		tmp->data = list[i];
-//		tmp->idx = i;
-//		tmp->left = NULL;
-//		tmp->left = NULL;
-//		if ((*root)->data<list[i]) {
-//
-//		}
+//	if (arr[mid] > target)
+//	{
+//		return rec(arr, target, start, mid - 1);
+//	}
+//	else if (arr[mid] < target) {
+//		return rec(arr, target, mid + 1, end);
+//	}
+//	else {
+//		return mid;
 //	}
 //}
 //
-//int bin_search(Node* node, int target) {
+//int main() {
+//	int arr[10] = { 5,7,10,15,30,40,55,80,88,100 };
+//	int target;
+//	int res;
 //
+//	while (1) {
+//		printf("Ã£À»°ª : ");
+//		scanf("%d", &target);
+//
+//		res = rec(arr, target,0,9);
+//
+//		if (res == -1) printf("Å½»ö½ÇÆĞ\n\n");
+//		else  printf("Å¸°ÙÀúÀåÀÎµ¦½º : %d\n\n", res);
+//	}
+//
+//	return 0;
+//}
+//
+
+////pr14
+//
+//int pow(int a, int b) {
+//	if (b == 0) return 0;
+//	if (b == 1) return a;
+//
+//	if (b % 2 == 1) return pow(a, b / 2 + 1) * pow(a, b / 2);
+//	if (b % 2 == 0) return pow(a, b / 2) * pow(a, b / 2);
 //}
 //
 //int main() {
-//	int list[10] = { 7,4,1,3,5,6,2,8,9,0 };
-//	Node *root=(Node*)malloc(sizeof(Node));
-//	generate_tree(&root, list);
-//	printf("Å½»ö¼º°ø\nÀÎµ¦½º : %d",bin_search(root, 6));
+//	int a, b;
+//	printf("¾î¶² ¼öÀÇ ¸î ½ÂÀ» ±¸ÇÒ±î¿ä? ");
+//	scanf("%d %d", &a, &b);
+//
+//	printf("%d", pow(a, b));
 //}
-
-//pr14
-
-int pow(int a, int b) {
-	if (b == 0) return 0;
-	if (b == 1) return a;
-
-	if (b % 2 == 1) return pow(a, b / 2 + 1) * pow(a, b / 2);
-	if (b % 2 == 0) return pow(a, b / 2) * pow(a, b / 2);
-}
-
-int main() {
-	int a, b;
-	printf("¾î¶² ¼öÀÇ ¸î ½ÂÀ» ±¸ÇÒ±î¿ä? ");
-	scanf("%d %d", &a, &b);
-
-	printf("%d", pow(a, b));
-}
