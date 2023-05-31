@@ -357,26 +357,149 @@
 //	return 0;
 //}
 
-//pr13
-typedef struct _node {
-	int data;
-	struct _node* left;
-	struct _node* right;
-}Node;
+////pr13
+//typedef struct _node {
+//	int data;
+//	struct _node* left;
+//	struct _node* right;
+//}Node;
+//
+//void generate_tree(Node* node, int* list) {
+//
+//}
+//
+//int bin_search(Node* node, int target) {
+//
+//}
+//
+//int main() {
+//	int list[10] = { 7,4,1,3,5,6,2,8,9,0 };
+//	Node *root=(Node*)malloc(sizeof(Node));
+//	root->left = NULL;
+//	root->right = NULL;
+//	list[]
+//
+//}
 
-void generate_tree(Node* node, int* list) {
+////pr15
+//void oct_to_bin(int a) {
+//	if (a <= 1) {
+//		printf("%d",a);
+//		return;
+//	}
+//	oct_to_bin(a / 2);
+//	printf("%d", a % 2);
+//}
+//
+//int main() {
+//	int a;
+//	while (1) {
+//		printf("\n10진수 값 입력 : ");
+//		scanf("%d", &a);
+//
+//		oct_to_bin(a);
+//	}
+//}
 
-}
+////pr16
+//void trim_string(char * a) {
+//	if (strlen(a)==1)
+//	{
+//		printf("%s ", a);
+//		return;
+//	}
+//	trim_string(a + 1);
+//	printf("%c ", a[0]);
+//}
+//
+//int main() {
+//	char buf[100];
+//	printf("정수 입력 : ");
+//	scanf("%s", buf);
+//
+//	trim_string(buf);
+//	return 0;
+//}
 
-int bin_search(Node* node, int target) {
+////pr17
+//void show_digit(int a) {
+//	if (a/10==0)
+//	{
+//		printf("%d ", a);
+//		return;
+//	}
+//	show_digit(a/10);
+//	printf("%d ", a%10);
+//}
+//
+//int main() {
+//	int tmp;
+//	printf("정수 입력 : ");
+//	scanf("%d", &tmp);
+//
+//	show_digit(tmp);
+//	return 0;
+//}
 
+////pr18
+//int main() {
+//	int n=5;
+//	int res=1;
+//
+//	for (int i = 1; i < n; i++)
+//	{
+//		res*= i;
+//	}
+//
+//	printf("%d", res);
+//}
+
+////pr19
+//#include <math.h>
+//int rec(int n) {
+//	if (n==1)
+//	{
+//		return 1;
+//	}
+//	return pow(n, 3) + rec(n - 1);
+//}
+//
+//int main() {
+//	int n = 10;
+//	printf("%d", rec(n));
+//}
+
+////pr20
+//void trim_string(char * a) {
+//	if (strlen(a)==1)
+//	{
+//		printf("%s ", a);
+//		return;
+//	}
+//	trim_string(a + 1);
+//	printf("%c ", a[0]);
+//}
+//
+//int main() {
+//	char buf[100];
+//	printf("입력 : ");
+//	scanf("%s", buf);
+//
+//	trim_string(buf);
+//	return 0;
+//}
+
+//pr21
+int gcd(int a, int b) {
+	if (a % b == 0) return b;
+	
+	int tmp=a%b;
+	a = b;
+	b = tmp;
+	
+	return(gcd(a, b));
 }
 
 int main() {
-	int list[10] = { 7,4,1,3,5,6,2,8,9,0 };
-	Node *root=(Node*)malloc(sizeof(Node));
-	root->left = NULL;
-	root->right = NULL;
-	list[]
-
+	printf("%d", gcd(1071, 1029));
 }

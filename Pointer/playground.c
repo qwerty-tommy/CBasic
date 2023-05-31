@@ -1,33 +1,70 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <windows.h>
+#include <time.h>
 
 int main() {
     srand(time(NULL));
 
+    int me;
+    int com;
+
     while (1) {
-        switch (rand() % 5)
+        scanf("%d", &me);
+        me = me % 3;
+        com = rand() % 3;
+        switch (me)
         {
         case 0:
-            printf("도\n");
+            switch (com)
+            {
+            case 0:
+                printf("YOU : 바위\tCOM : 바위\t비김\n");
+                break;
+            case 1:
+                printf("YOU : 바위\tCOM : 가위\t이김\n");
+                break;
+            case 2:
+                printf("YOU : 바위\tCOM : 보\t짐\n");
+                break;
+            default:
+                break;
+            }
             break;
         case 1:
-            printf("개\n");
+            switch (com)
+            {
+            case 0:
+                printf("YOU : 가위\tCOM : 바위\t짐\n");
+                break;
+            case 1:
+                printf("YOU : 가위\tCOM : 가위\t비김\n");
+                break;
+            case 2:
+                printf("YOU : 가위\tCOM : 보\t이김\n");
+                break;
+            default:
+                break;
+            }
             break;
         case 2:
-            printf("걸\n");
-            break;
-        case 3:
-            printf("윷\n");
-            break;
-        case 4:
-            printf("모\n");
+            switch (com)
+            {
+            case 0:
+                printf("YOU : 보\tCOM : 바위\t이김\n");
+                break;
+            case 1:
+                printf("YOU : 보\tCOM : 가위\t짐\n");
+                break;
+            case 2:
+                printf("YOU : 보\tCOM : 보\t비김\n");
+                break;
+            default:
+                break;
+            }
             break;
         default:
             break;
         }
-
-        Sleep(1000);
     }
 
     return 0;
