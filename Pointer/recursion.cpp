@@ -410,4 +410,180 @@
 //	scanf("%d %d", &a, &b);
 //
 //	printf("%d", pow(a, b));
+//}//////pr13
+//int rec(int* arr, int target, int start, int end) {
+//	if ((start >= end) && (arr[start]!=target)) return -1;
+//
+//	int mid = (start + end) / 2;
+//
+//	if (arr[mid] > target)
+//	{
+//		return rec(arr, target, start, mid - 1);
+//	}
+//	else if (arr[mid] < target) {
+//		return rec(arr, target, mid + 1, end);
+//	}
+//	else {
+//		return mid;
+//	}
 //}
+//
+//int main() {
+//	int arr[10] = { 5,7,10,15,30,40,55,80,88,100 };
+//	int target;
+//	int res;
+//
+//	while (1) {
+//		printf("찾을값 : ");
+//		scanf("%d", &target);
+//
+//		res = rec(arr, target,0,9);
+//
+//		if (res == -1) printf("탐색실패\n\n");
+//		else  printf("타겟저장인덱스 : %d\n\n", res);
+//	}
+//
+//	return 0;
+//}
+//
+
+////pr14
+//
+//int pow(int a, int b) {
+//	if (b == 0) return 0;
+//	if (b == 1) return a;
+//
+//	if (b % 2 == 1) return pow(a, b / 2 + 1) * pow(a, b / 2);
+//	if (b % 2 == 0) return pow(a, b / 2) * pow(a, b / 2);
+//}
+//
+//int main() {
+//	int a, b;
+//	printf("어떤 수의 몇 승을 구할까요? ");
+//	scanf("%d %d", &a, &b);
+//
+//	printf("%d", pow(a, b));
+//}
+
+////pr15
+//void oct_to_bin(int a) {
+//	if (a <= 1) {
+//		printf("%d",a);
+//		return;
+//	}
+//	oct_to_bin(a / 2);
+//	printf("%d", a % 2);
+//}
+//
+//int main() {
+//	int a;
+//	while (1) {
+//		printf("\n10진수 값 입력 : ");
+//		scanf("%d", &a);
+//
+//		oct_to_bin(a);
+//	}
+//}
+
+////pr16
+//void trim_string(char * a) {
+//	if (strlen(a)==1)
+//	{
+//		printf("%s ", a);
+//		return;
+//	}
+//	trim_string(a + 1);
+//	printf("%c ", a[0]);
+//}
+//
+//int main() {
+//	char buf[100];
+//	printf("정수 입력 : ");
+//	scanf("%s", buf);
+//
+//	trim_string(buf);
+//	return 0;
+//}
+
+////pr17
+//void show_digit(int a) {
+//	if (a/10==0)
+//	{
+//		printf("%d ", a);
+//		return;
+//	}
+//	show_digit(a/10);
+//	printf("%d ", a%10);
+//}
+//
+//int main() {
+//	int tmp;
+//	printf("정수 입력 : ");
+//	scanf("%d", &tmp);
+//
+//	show_digit(tmp);
+//	return 0;
+//}
+
+////pr18
+//int main() {
+//	int n=5;
+//	int res=1;
+//
+//	for (int i = 1; i < n; i++)
+//	{
+//		res*= i;
+//	}
+//
+//	printf("%d", res);
+//}
+
+////pr19
+//#include <math.h>
+//int rec(int n) {
+//	if (n==1)
+//	{
+//		return 1;
+//	}
+//	return pow(n, 3) + rec(n - 1);
+//}
+//
+//int main() {
+//	int n = 10;
+//	printf("%d", rec(n));
+//}
+
+////pr20
+//void trim_string(char * a) {
+//	if (strlen(a)==1)
+//	{
+//		printf("%s ", a);
+//		return;
+//	}
+//	trim_string(a + 1);
+//	printf("%c ", a[0]);
+//}
+//
+//int main() {
+//	char buf[100];
+//	printf("입력 : ");
+//	scanf("%s", buf);
+//
+//	trim_string(buf);
+//	return 0;
+//}
+
+//pr21
+int gcd(int a, int b) {
+	if (a % b == 0) return b;
+	
+	int tmp=a%b;
+	a = b;
+	b = tmp;
+	
+	return(gcd(a, b));
+}
+
+int main() {
+	printf("%d", gcd(1071, 1029));
+}
