@@ -233,6 +233,8 @@
 //}
 
 ////pr07
+// 
+// 
 //void rec(int n) {
 //	if (n < 0) return;
 //	for (int i = 0; i < n; i++)
@@ -249,6 +251,27 @@
 //}
 
 ////pr08
+//void rec_line(int n, char shape) {
+//	if (n < 0) return;
+//	printf("%c", shape);
+//	rec_line(n - 1, shape);
+//}
+//
+//void rec(int n) {
+//	if (n < 1) return;
+//	rec_line(n-1, ' ');
+//	rec_line(5 - n, '#');
+//	rec_line(4 - n, '#');
+//
+//	printf("\n");
+//	rec(n - 1);
+//}
+//
+//int main() {
+//	rec(5);
+//	return 0;
+//}
+
 //void rec(int n) {
 //	if (n < 0) return;
 //	for (int i = 0; i < n; i++)
@@ -303,31 +326,22 @@
 
 ////pr10
 //int rec(int n) {
-//	if (n < 1) return 0;
+//	if (n > 10) return 0;
 //
-//	int sum = n + rec(n - 1);
-//	printf("%d ", n);
-//	 return sum;
+//	printf("%d+", n);
+//	return n + rec(n + 1);
 //}
 //
 //int main() {
-//	printf("\n%d", rec(10));
+//	printf("\b=%d", rec(1));
 //	return 0;
 //}
 
 ////pr11
-//int cache[10] = {0,};
-//
-//int rec(int n) {
-//	if (cache[n] != 0) return cache[n];
-//
-//	if (n < 1) return 0;
-//
-//	int sum = n + rec(n - 1);
-//	cache[n] = sum;
-//	printf("%d ", n);
-//	return sum;
-//}
+/*int rec(int n) {
+	if (n < 1) return 0;
+	return n + rec(n - 1);
+}*/
 //
 //int main() {
 //	int first;
@@ -345,9 +359,7 @@
 ////pr12
 //int rec(int n) {
 //	if (n < 1) return 1;
-//
-//	int sum = n * rec(n - 1);
-//	 return sum;
+//	 return  n * rec(n - 1);
 //}
 //
 //int main() {
@@ -415,8 +427,7 @@
 
 ////pr15
 //void oct_to_bin(int a) {
-//	if (a <= 1) {
-//		printf("%d",a);
+//	if (a==0) {
 //		return;
 //	}
 //	oct_to_bin(a / 2);
@@ -434,22 +445,18 @@
 //}
 
 ////pr16
-//void trim_string(char * a) {
-//	if (strlen(a)==1)
-//	{
-//		printf("%s ", a);
-//		return;
-//	}
-//	trim_string(a + 1);
-//	printf("%c ", a[0]);
+//void split_int(int a) {
+//	printf("%d ", a % 10);
+//	if (a / 10 == 0) return;
+//	split_int(a / 10);
 //}
 //
 //int main() {
-//	char buf[100];
+//	int buf;
 //	printf("정수 입력 : ");
-//	scanf("%s", buf);
+//	scanf("%d", &buf);
 //
-//	trim_string(buf);
+//	split_int(buf);
 //	return 0;
 //}
 
@@ -511,7 +518,7 @@
 //	trim_string(a + 1);
 //	printf("%c ", a[0]);
 //}
-//
+
 //int main() {
 //	char buf[100];
 //	printf("입력 : ");
@@ -520,18 +527,30 @@
 //	trim_string(buf);
 //	return 0;
 //}
-
-//pr21
-int gcd(int a, int b) {
-	if (a % b == 0) return b;
-	
-	int tmp=a%b;
-	a = b;
-	b = tmp;
-	
-	return(gcd(a, b));
+#include<conio.h>
+void trim_string() {
+	char ch = _getche();
+	if (ch == 13) return;
+	trim_string();
+	printf("%c", ch);
 }
 
 int main() {
-	printf("%d", gcd(1071, 1029));
+	trim_string();
+	return 0;
 }
+
+////pr21
+//int gcd(int a, int b) {
+//	if (a % b == 0) return b;
+//	
+//	int tmp=a%b;
+//	a = b;
+//	b = tmp;
+//	
+//	return(gcd(a, b));
+//}
+//
+//int main() {
+//	printf("%d", gcd(1071, 1029));
+//}
