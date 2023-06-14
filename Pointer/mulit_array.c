@@ -432,84 +432,84 @@
 //}
 
 
-//pr9
-#include<time.h>
-#define MASK_RATIO 0.6
-int main() {
-	int size;
-	char buf[100];
-
-	printf("몇 개의 단어를 입력하여 저장할까요? : ");
-	scanf("%d", &size);
-
-	char** dict = (char**)malloc(size * sizeof(char*));
-
-	for (int i = 0; i < size; i++)
-	{
-		printf("%d번째 단어 : ", i + 1);
-		scanf("%s", buf);
-		*(dict + i) = (char*)malloc((strlen(buf) + 1));
-		strcpy(*(dict + i), buf);
-	}
-	printf("== 저장이 끝났습니다. ==\n");
-
-	printf("\n저장된 데이터\n");
-	for (int i = 0; i < size; i++) printf("%s\n", *(dict + i));
-	printf("\n");
-
-	char ans[100];
-	char prob[100];
-
-	srand(time(NULL));
-
-	strcpy(ans, *(dict + rand() % size));
-	strcpy(prob, ans);
-
-	printf("ans : %s\n", ans);
-
-	int mask_size = (int)(strlen(ans) * MASK_RATIO);
-
-	printf("MASK_RATIO : %f\n", MASK_RATIO);
-	printf("mask_size : %d\n", mask_size);
-
-	for (int i = 0; i < mask_size; )
-	{
-		int tmp = rand() % strlen(ans);
-		if (prob[tmp] == '*') {
-			continue;
-		}
-		else {
-			prob[tmp] = '*';
-			i++;
-		}
-	}
-
-	printf("prob : %s\n", prob);
-
-	printf("\n== 게임 시작! ==\n");
-	
-	char input;
-	
-	while (strcmp(prob, ans) != 0) {
-		printf("문제 => %s\n", prob);
-		printf("글자 하나 입력 : ");
-		scanf(" %c", &input);
-
-		int i;
-		for (i = 0; i < strlen(ans); i++)
-		{
-			if (prob[i] == '*' && ans[i] == input) {
-				printf("%c 정답!\n", input);
-				prob[i] = ans[i];
-				break;
-			}
-		}
-
-		if(i==strlen(ans)) printf("%c 오답!\n", input);
-	}
-
-	printf("== 게임 종료 ==");
-}
+////pr9
+//#include<time.h>
+//#define MASK_RATIO 0.6
+//int main() {
+//	int size;
+//	char buf[100];
+//
+//	printf("몇 개의 단어를 입력하여 저장할까요? : ");
+//	scanf("%d", &size);
+//
+//	char** dict = (char**)malloc(size * sizeof(char*));
+//
+//	for (int i = 0; i < size; i++)
+//	{
+//		printf("%d번째 단어 : ", i + 1);
+//		scanf("%s", buf);
+//		*(dict + i) = (char*)malloc((strlen(buf) + 1));
+//		strcpy(*(dict + i), buf);
+//	}
+//	printf("== 저장이 끝났습니다. ==\n");
+//
+//	printf("\n저장된 데이터\n");
+//	for (int i = 0; i < size; i++) printf("%s\n", *(dict + i));
+//	printf("\n");
+//
+//	char ans[100];
+//	char prob[100];
+//
+//	srand(time(NULL));
+//
+//	strcpy(ans, *(dict + rand() % size));
+//	strcpy(prob, ans);
+//
+//	printf("ans : %s\n", ans);
+//
+//	int mask_size = (int)(strlen(ans) * MASK_RATIO);
+//
+//	printf("MASK_RATIO : %f\n", MASK_RATIO);
+//	printf("mask_size : %d\n", mask_size);
+//
+//	for (int i = 0; i < mask_size; )
+//	{
+//		int tmp = rand() % strlen(ans);
+//		if (prob[tmp] == '*') {
+//			continue;
+//		}
+//		else {
+//			prob[tmp] = '*';
+//			i++;
+//		}
+//	}
+//
+//	printf("prob : %s\n", prob);
+//
+//	printf("\n== 게임 시작! ==\n");
+//	
+//	char input;
+//	
+//	while (strcmp(prob, ans) != 0) {
+//		printf("문제 => %s\n", prob);
+//		printf("글자 하나 입력 : ");
+//		scanf(" %c", &input);
+//
+//		int i;
+//		for (i = 0; i < strlen(ans); i++)
+//		{
+//			if (prob[i] == '*' && ans[i] == input) {
+//				printf("%c 정답!\n", input);
+//				prob[i] = ans[i];
+//				break;
+//			}
+//		}
+//
+//		if(i==strlen(ans)) printf("%c 오답!\n", input);
+//	}
+//
+//	printf("== 게임 종료 ==");
+//}
 
 ////pr10
 //void getData(char**dict,int size) {

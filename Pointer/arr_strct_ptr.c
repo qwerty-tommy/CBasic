@@ -200,62 +200,282 @@
 //}
 
 
-//pr02
-#define MAX_PERSON 20
+////pr02
+//#define MAX_PERSON 20
+//
+//typedef struct _person {
+//	char* name;
+//	char* phone;
+//	int age;
+//}PERSON, *PPERSON;
+//
+//int idx = 0;
+//
+//void enroll(PPERSON* list_p) {
+//	PPERSON list = *list_p;
+//	list[idx].name = (char*)malloc(sizeof(char) * 30);
+//	list[idx].phone = (char*)malloc(sizeof(char) * 30);
+//
+//	char buf[30];
+//	printf("이름 : ");
+//	scanf("%s", buf);
+//	strcpy(list[idx].name, buf);
+//
+//	printf("전화번호: ");
+//	scanf("%s", buf);
+//	strcpy(list[idx].phone, buf);
+//
+//	printf("나이 : ");
+//	scanf("%d", &(list[idx++].age));
+//
+//	return;
+//}
+//
+//int del(PPERSON* list_p, char * target) { 
+//	PPERSON list = *list_p;
+//	int i;
+//
+//	for (i = 0; i < idx; i++)
+//	{
+//		if (strcmp(list[i].name,target))
+//		{
+//			for (int j = i; j < idx - 1; j++)
+//			{
+//				list[j] = list[j + 1];
+//			}
+//
+//			idx--;
+//			return 0;
+//		}
+//	}
+//
+//	return 1;
+//}
+//
+//void list_print(PPERSON list) {
+//	printf("이름\t전화번호\t나이\n");
+//	for (int i = 0; i < idx; i++)
+//	{
+//		printf("%s\t%s\t%d\n", list[i].name, list[i].phone, list[i].age);
+//	}
+//}
+//
+//void swap(PPERSON* list_p, int a, int b) {
+//	PPERSON list = *list_p;
+//	PERSON tmp;
+//	tmp = list[a];
+//	list[a] = list[b];
+//	list[b] = tmp;
+//}
+//
+//void sort(PPERSON* list_p) {
+//	PPERSON list = *list_p;
+//	for (int i = 0; i < idx; i++)
+//	{
+//		for (int j = 0; j < idx - i - 1; j++)
+//		{
+//			if (strcmp(list[j].name, list[j + 1].name)>0) swap(list_p, j, j + 1);
+//		}
+//	}
+//}
+//
+//int main() {
+//	int select;
+//
+//	PPERSON per_list = (PPERSON)malloc(sizeof(PERSON) * MAX_PERSON);
+//
+//	while (1) {
+//		char tmp[30];
+//
+//		printf("1. 등록\n");
+//		printf("2. 삭제\n");
+//		printf("3. 리스트 출력\n");
+//		printf("4. 정렬\n");
+//		printf("5. 종료\n");
+//		printf("===> ");
+//		scanf("%d", &select);
+//
+//		switch (select)
+//		{
+//		case 1:
+//			enroll(&per_list);
+//			printf("등록 완료\n\n");
+//			break;
+//		case 2:
+//			printf("삭제하려는 이름 : ");
+//			scanf("%s", tmp);
+//			if (del(&per_list, tmp)) {
+//				printf("찾을 수 없습니다.\n\n");
+//			}
+//			else {
+//				printf("삭제 완료\n\n");
+//			}
+//			break;
+//		case 3:
+//			list_print(per_list);
+//			printf("출력 완료\n\n");
+//			break;
+//		case 4:
+//			sort(&per_list);
+//			printf("정렬 완료(이름순)\n\n");
+//			list_print(per_list);
+//			break;
+//		case 5:
+//			return 0;
+//		default:
+//			break;
+//		}
+//	}
+//}
+//
+///*
+//1
+//aaa
+//010
+//14
+//1
+//ccc
+//031
+//15
+//1
+//bbb
+//011
+//16
+//3
+//4
+//
+//*/
 
-typedef struct _person {
-	char* name;
-	char* phone;
-	int age;
-}PERSON, *PPERSON;
 
-int idx = 0;
+////pr03
+//#define MAX_SIZE 10
+//
+//int idx = 0;
+//typedef enum {INT,DOUBLE,STRING} ENUMTYPE;
+//typedef struct _sData {
+//	ENUMTYPE typd;
+//	void* vp;
+//} DATA, *PDATA;
+//
+//void enroll(PDATA * parr) {
+//	PDATA arr = *parr;
+//	int select;
+//
+//	printf("자료의 종류를 입력하세요[정수:1, 실수:2, 문자열:3]\n=>");
+//	scanf("%d",&select);
+//	
+//	switch (select)
+//	{
+//	case 1:
+//		arr[idx].
+//		break;
+//	case 2:
+//		break;
+//	case 3:
+//		break;
+//	default:
+//		break;
+//	}
+//}
+//int del() {}
+//void print(){}
+//
+//int main() {
+//	int select;
+//	PDATA data_arr = (PDATA)malloc(sizeof(DATA) * MAX_SIZE);
+//
+//	while (1) {
+//		printf("1. 자료 등록 \n");
+//		printf("2. 자료 삭제 \n");
+//		printf("3. 자료 출력 \n");
+//		printf("4. 종료 \n");
+//		printf("=============\n");
+//		
+//		scanf("%d", &select);
+//		
+//		switch (select)
+//		{
+//		case 1:
+//			enroll(&data_arr);
+//			break;
+//		case 2:
+//			printf("삭제할 index를 입력하세요 : ");
+//			scanf("%d", select);
+//			del(&data_arr,select);
+//			break;
+//		case 3:
+//			print(data_arr);
+//			break;
+//		case 4:
+//			return 0;
+//		default:
+//			break;
+//		}
+//
+//		printf("정수를 입력하세요 :");
+//	}
+//}
 
-void enroll(PPERSON* list) {
-	printf("이름 : ");
-	scanf("%s", list[idx]->name);
-	printf("전화번호: ");
-	scanf("%s", list[idx]->phone);
-	printf("나이 : ");
-	scanf("%d", &(list[idx]->age));
+//pr04
 
-	return;
+double add(double x, double y) {
+	printf("더하기\n");
+	return x + y;
 }
 
-void del() {}
-void list_print() {}
-void sort() {}
+double sub(double x, double y) {
+	return x - y;
+}
+
+double mul(double x, double y) {
+	return x * y;
+}
+
+double div1(double x, double y) {
+	return (double)(x / y);
+}
+
+double(*pf[4])(double x, double y) = { add,sub, mul,div };
 
 int main() {
-	int select;
-
-	PPERSON* per_list = (PPERSON*)malloc(sizeof(PPERSON)*MAX_PERSON);
+	int sel;
+	int a, b;
 
 	while (1) {
-		printf("1. 등록\n");
-		printf("2. 삭제\n");
-		printf("3. 리스트 출력\n");
-		printf("4. 정렬\n");
-		printf("5. 종료\n");
-		printf("===> ");
-		scanf("%d", &select);
+		printf("==============\n");
+		printf("0. 덧셈\n");
+		printf("1. 뺄셈\n");
+		printf("2. 곱셈\n");
+		printf("3. 나눗셈\n");
+		printf("4. 종료\n");
+		printf("==============\n");
 
-		switch (select)
-		{
+		printf("메뉴를 선택하시오 : ");
+		scanf("%d", &sel);
+
+		printf("2개의 정수를 입력하시오 : ");
+		scanf("%d %d", &a, &b);
+
+		if (0 <= sel <= 3) printf("답 : %d\n\n",pf[sel](a, b));
+		else if (sel == 4) return 0;
+
+		/*switch (sel) {
+		case 0:
+			pf[0](a, b);
+			break;
 		case 1:
-			per_list[idx] = (PPERSON)malloc(sizeof(PERSON));
-			enroll(per_list);
+			pf[1](a, b);
+			break;
 		case 2:
-			del();
+			pf[2](a, b);
+			break;
 		case 3:
-			list_print();
+			pf[3](a, b);
+			break;
 		case 4:
-			sort();
-		case 5:
 			return 0;
-
 		default:
 			break;
-		}
+		}*/
 	}
 }
