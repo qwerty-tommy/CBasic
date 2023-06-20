@@ -231,10 +231,10 @@
 
 int check_Invalid(int maze[MAZE_COL_SIZE][MAZE_ROW_SIZE],int x, int y) {
 	return (
-		x < MAZE_COL_SIZE - 1 && 
-		x > 0 && 
-		y < MAZE_COL_SIZE - 1 &&
-		y > 0 &&
+		x <= MAZE_COL_SIZE - 1 && 
+		x >= 0 && 
+		y <= MAZE_COL_SIZE - 1 &&
+		y >= 0 &&
 		maze[x][y]==0
 	);
 }
@@ -264,6 +264,11 @@ int solve_maze(int maze[MAZE_COL_SIZE][MAZE_ROW_SIZE], element start, element en
 
 	while (!is_empty(&next_stack))
 	{
+		if (maze[end.x][end.y]==2)
+		{
+			return 1;
+		}
+		
 		cur = pop(&next_stack);
 		maze[cur.x][cur.y] = 2;
 
@@ -276,7 +281,7 @@ int solve_maze(int maze[MAZE_COL_SIZE][MAZE_ROW_SIZE], element start, element en
 			if (check_Invalid(maze, tmp.x, tmp.y)) push(&next_stack, tmp);
 		}
 
-		Sleep(0.5);
+		Sleep(500);
 	}
 
 	if (maze[end.x][end.y] == 2) return 0;
@@ -303,5 +308,8 @@ int main() {
 	end.x = 9;
 	end.y = 9;
 
-	if(solve_maze(maze,start,end)==-1) printf("Can't solve..");
+	if (solve_maze(maze, start, end) == -1) printf("Can't solve..");
+	else printf("Solve!");
+
+	return 1;
 }
