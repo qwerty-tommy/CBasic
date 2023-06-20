@@ -5,9 +5,8 @@
 #define MAX_STRING 100
 
 typedef struct {
-	int student_no;
-	char name[MAX_STRING];
-	char address[MAX_STRING];
+	int x;
+	int y;
 }element;
 
 typedef struct {

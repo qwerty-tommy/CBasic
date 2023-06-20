@@ -19,7 +19,7 @@ void push(StackType* s,element item) {
 		fprintf(stderr, "stack full err\n");
 		return;
 	}
-	else s->stack[++s->top] = item;
+	else s->stack[++(s->top)] = item;
 }
 
 element pop(StackType* s) {
@@ -27,7 +27,7 @@ element pop(StackType* s) {
 		fprintf(stderr, "stack empty err\n");
 		exit(1);
 	}
-	else return s->stack[s->top--];
+	else return s->stack[(s->top)--];
 }
 
 element peek(StackType* s) {
@@ -35,5 +35,5 @@ element peek(StackType* s) {
 		fprintf(stderr, "stack empty err\n");
 		exit(1);
 	}
-	else return s->stack[s->top];
+	else return s->stack[(s->top)];
 }
