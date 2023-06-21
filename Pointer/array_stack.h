@@ -5,8 +5,8 @@
 #define MAX_STRING 100
 
 typedef struct {
-	int x;
-	int y;
+	int idx;
+	int height;
 }element;
 
 typedef struct {

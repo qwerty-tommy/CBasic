@@ -224,92 +224,132 @@
 //	printf("result : %d",cal(state_stack));
 //}
 
-//pr01
-#define MAZE_COL_SIZE 10
-#define MAZE_ROW_SIZE 10
-#include <windows.h>
+////pr01
+//#define MAZE_COL_SIZE 10
+//#define MAZE_ROW_SIZE 10
+//#include <windows.h>
+// 
+//typedef struct {
+//	int x;
+//	int y;
+//}element;
+//
+//int check_Invalid(int maze[MAZE_COL_SIZE][MAZE_ROW_SIZE],int x, int y) {
+//	return (
+//		x <= MAZE_COL_SIZE - 1 && 
+//		x >= 0 && 
+//		y <= MAZE_COL_SIZE - 1 &&
+//		y >= 0 &&
+//		maze[x][y]==0
+//	);
+//}
+//
+//void print_maze(int maze[MAZE_COL_SIZE][MAZE_ROW_SIZE]) {
+//	for (int i = 0; i < MAZE_COL_SIZE; i++)
+//	{
+//		for (int j = 0; j < MAZE_ROW_SIZE; j++)
+//		{
+//			printf("%d ",maze[i][j]);
+//		}
+//		printf("\n");
+//	}
+//	printf("\n\n\n\n\n\n\n\n\n\n");
+//}
+//
+//int solve_maze(int maze[MAZE_COL_SIZE][MAZE_ROW_SIZE], element start, element end) {
+//	StackType next_stack;
+//	element cur;
+//	element tmp;
+//
+//	int difx[4] = { -1,0,1,0 };
+//	int dify[4] = { 0,-1,0,1 };
+//
+//	init(&next_stack);
+//	push(&next_stack, start);
+//
+//	while (!is_empty(&next_stack))
+//	{
+//		if (maze[end.x][end.y]==2)
+//		{
+//			return 1;
+//		}
+//		
+//		cur = pop(&next_stack);
+//		maze[cur.x][cur.y] = 2;
+//
+//		print_maze(maze);
+//
+//		for (int i = 0; i < 4; i++)
+//		{
+//			tmp.x = cur.x + difx[i];
+//			tmp.y = cur.y + dify[i];
+//			if (check_Invalid(maze, tmp.x, tmp.y)) push(&next_stack, tmp);
+//		}
+//
+//		Sleep(500);
+//	}
+//
+//	if (maze[end.x][end.y] == 2) return 0;
+//	return -1;
+//}
+//
+//int main() {
+//	int maze[MAZE_COL_SIZE][MAZE_ROW_SIZE] = {
+//		{0,1,1,1,1,1,1,1,1,1},
+//		{0,0,0,1,1,1,0,1,1,1},
+//		{1,1,0,0,0,0,0,0,1,1},
+//		{1,1,0,1,1,1,1,0,1,1},
+//		{1,1,0,1,1,0,0,0,1,1},
+//		{1,1,0,1,1,1,1,1,1,1},
+//		{1,1,0,0,0,0,1,0,0,1},
+//		{1,1,0,1,0,1,1,0,1,1},
+//		{1,0,0,1,0,0,0,0,0,0},
+//		{1,1,1,1,1,1,1,1,1,0},
+//	};
+//
+//	element start,end;
+//	start.x = 0;
+//	start.y = 0;
+//	end.x = 9;
+//	end.y = 9;
+//
+//	if (solve_maze(maze, start, end) == -1) printf("Can't solve..");
+//	else printf("Solve!");
+//
+//	return 1;
+//}
 
-int check_Invalid(int maze[MAZE_COL_SIZE][MAZE_ROW_SIZE],int x, int y) {
-	return (
-		x <= MAZE_COL_SIZE - 1 && 
-		x >= 0 && 
-		y <= MAZE_COL_SIZE - 1 &&
-		y >= 0 &&
-		maze[x][y]==0
-	);
-}
+//pr08 - 통신탑
 
-void print_maze(int maze[MAZE_COL_SIZE][MAZE_ROW_SIZE]) {
-	for (int i = 0; i < MAZE_COL_SIZE; i++)
-	{
-		for (int j = 0; j < MAZE_ROW_SIZE; j++)
-		{
-			printf("%d ",maze[i][j]);
-		}
-		printf("\n");
-	}
-	printf("\n\n\n\n\n\n\n\n\n\n");
-}
 
-int solve_maze(int maze[MAZE_COL_SIZE][MAZE_ROW_SIZE], element start, element end) {
-	StackType next_stack;
-	element cur;
+int main(){
+	int size;
 	element tmp;
+	StackType towers;
 
-	int difx[4] = { -1,0,1,0 };
-	int dify[4] = { 0,-1,0,1 };
+	init(&towers);
 
-	init(&next_stack);
-	push(&next_stack, start);
+	printf("탑의 개수 : ");
+	scanf("%d", &size);
 
-	while (!is_empty(&next_stack))
+	tmp.height = -1;
+	tmp.idx = 0;
+	push(&towers, tmp);
+
+	for (int i = 0; i < size; i++)
 	{
-		if (maze[end.x][end.y]==2)
-		{
-			return 1;
-		}
-		
-		cur = pop(&next_stack);
-		maze[cur.x][cur.y] = 2;
+		printf("%d 번째 탑의 높이 : ", i+1);
+		scanf("%d", &tmp.height);
+		tmp.idx = i + 1;
 
-		print_maze(maze);
-
-		for (int i = 0; i < 4; i++)
-		{
-			tmp.x = cur.x + difx[i];
-			tmp.y = cur.y + dify[i];
-			if (check_Invalid(maze, tmp.x, tmp.y)) push(&next_stack, tmp);
+		while (!is_empty(&towers) && peek(&towers).height <= tmp.height) {
+			pop(&towers);
 		}
 
-		Sleep(500);
+		if(is_empty(&towers)) printf("==> 수신 가능한 탑 0번\n\n");
+		else printf("==> 수신 가능한 탑 %d번\n\n",peek(&towers).idx);
+
+		push(&towers, tmp);
 	}
-
-	if (maze[end.x][end.y] == 2) return 0;
-	return -1;
-}
-
-int main() {
-	int maze[MAZE_COL_SIZE][MAZE_ROW_SIZE] = {
-		{0,1,1,1,1,1,1,1,1,1},
-		{0,0,0,1,1,1,0,1,1,1},
-		{1,1,0,0,0,0,0,0,1,1},
-		{1,1,0,1,1,1,1,0,1,1},
-		{1,1,0,1,1,0,0,0,1,1},
-		{1,1,0,1,1,1,1,1,1,1},
-		{1,1,0,0,0,0,1,0,0,1},
-		{1,1,0,1,0,1,1,0,1,1},
-		{1,0,0,1,0,0,0,0,0,0},
-		{1,1,1,1,1,1,1,1,1,0},
-	};
-
-	element start,end;
-	start.x = 0;
-	start.y = 0;
-	end.x = 9;
-	end.y = 9;
-
-	if (solve_maze(maze, start, end) == -1) printf("Can't solve..");
-	else printf("Solve!");
-
-	return 1;
+	return 0;
 }
