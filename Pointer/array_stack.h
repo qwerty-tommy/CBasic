@@ -4,9 +4,14 @@
 #define MAX_STACK_SIZE 100
 #define MAX_STRING 100
 
+//typedef struct {
+//	int idx;
+//	int height;
+//}element;
+
 typedef struct {
-	int idx;
-	int height;
+	int x;
+	int y;
 }element;
 
 typedef struct {
