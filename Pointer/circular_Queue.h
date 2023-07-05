@@ -2,10 +2,10 @@
 #ifndef CircularQueue
 #define CircularQueue
 
-#define MAX_QUEUE_SIZE 10
+#define MAX_QUEUE_SIZE 30
 
 typedef struct {
-	int data;
+	int time;
 }element;
 
 typedef struct {

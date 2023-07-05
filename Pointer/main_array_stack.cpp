@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "array_stack.h"
+#include "array_Stack.h"
 
 ////ex03
 //typedef struct {

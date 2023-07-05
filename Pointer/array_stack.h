@@ -2,17 +2,10 @@
 #define ArraySTACK
 
 #define MAX_STACK_SIZE 100
-#define MAX_STRING 100
 
-//typedef struct {
-//	int idx;
-//	int height;
-//}element;
+#include "tree_Node.h"
 
-typedef struct {
-	int x;
-	int y;
-}element;
+typedef TreeNode* element;
 
 typedef struct {
 	element stack[MAX_STACK_SIZE];
