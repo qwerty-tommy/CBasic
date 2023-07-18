@@ -5,8 +5,9 @@
 
 #include "tree_Node.h"
 
+
 //typedef TreeNode* element;
-typedef int element;
+typedef TreeNode* element;
 
 typedef struct {
 	element stack[MAX_STACK_SIZE];

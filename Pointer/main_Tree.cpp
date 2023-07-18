@@ -251,134 +251,217 @@
 //}
 
 //pr08
-typedef struct _edge {
-	int from;
-	int to;
-}Edge;
+//typedef struct _edge {
+//	int from;
+//	int to;
+//}Edge;
+//
+//typedef struct _graph08 {
+//	Edge edges[100];
+//	int size;
+//}Graph08;
+//
+//Graph08 tr[100];
+//int tree_num = 0;
+//
+//void init_graphs() {
+//	for (int i = 0; i < 100; i++)
+//	{
+//		tr[i].size = 0;
+//	}
+//}
+//
+//int find_graph_idx(int from, int to) {
+//	for (int i = 0; i < tree_num; i++)
+//	{
+//		for (int j = 0; j < tr[i].size; j++)
+//		{
+//			if (
+//				tr[i].edges[j].from == from ||
+//				tr[i].edges[j].to == from ||
+//				tr[i].edges[j].from == to ||
+//				tr[i].edges[j].to == to
+//				) {
+//				return i+1;
+//			}
+//		}
+//	}
+//	return 0;
+//}
+//
+//int is_in(int* arr,int offset ,int target) {
+//	for (int i = 0; i < offset; i++)
+//	{
+//		if (arr[i] == target)	//스택에서 꺼낸 값이 방문한적 있는 값이면 false
+//		{
+//			return 1;
+//		}
+//	}
+//	return 0;
+//}
+//
+//int is_tree(Graph08 graph) {
+//	StackType st;
+//	int visited[100];
+//	element cur;
+//	int a=0;
+//	int prev = -1;
+//
+//	init(&st);
+//	push(&st, graph.edges[0].from);
+//
+//	while (!is_empty(&st)) {
+//		cur = pop(&st);
+//
+//		if(is_in(visited, a, cur)) return 0;
+//		
+//		for (int i = 0; i < graph.size; i++)
+//		{
+//			if (graph.edges[i].from == cur && !is_in(visited, a, graph.edges[i].to))
+//			{
+//				push(&st, graph.edges[i].to);
+//			}
+//			if (graph.edges[i].to == cur && !is_in(visited, a, graph.edges[i].from))
+//			{
+//				push(&st, graph.edges[i].from);
+//			}
+//		}
+//		visited[a++] = cur;
+//		prev = cur;
+//	}
+//
+//	return 1;
+//}
+//
+////typedef int element;
+//int main() {
+//	int ver_size, edg_size;
+//	int from, to;
+//
+//	init_graphs();
+//
+//	printf("정점/간선 개수 : ");
+//	scanf("%d %d",&ver_size,&edg_size);
+//
+//	int tmp;
+//	for (int i = 0; i < edg_size; i++)
+//	{
+//		scanf("%d %d", &from, &to);
+//
+//		if (tmp = find_graph_idx(from, to)) {	
+//			//요소가 겹치는 트리가 있다면, 해당 트리에 간선 추가
+//			tr[tmp - 1].edges[tr[tmp - 1].size].from = from;
+//			tr[tmp - 1].edges[tr[tmp - 1].size].to= to;
+//			tr[tmp - 1].size++;
+//		}
+//		else {	
+//			//요소가 겹치는 트리가 없다면 트리를 새로 생성
+//			tr[tree_num].edges[0].from = from;
+//			tr[tree_num].edges[0].to = to;
+//			tr[tree_num].size++;
+//			tree_num++;
+//		}
+//	}
+//
+//	int cnt=0;
+//	for (int i = 0; i < tree_num; i++)
+//	{
+//		if (is_tree(tr[i])) {
+//			cnt++;
+//		}
+//	}
+//
+//	printf("%d", cnt);
+//}
 
-typedef struct _graph08 {
-	Edge edges[100];
-	int size;
-}Graph08;
-
-Graph08 tr[100];
-int tree_num = 0;
-
-void init_graphs() {
-	for (int i = 0; i < 100; i++)
-	{
-		tr[i].size = 0;
-	}
-}
-
-int find_graph_idx(int from, int to) {
-	for (int i = 0; i < tree_num; i++)
-	{
-		for (int j = 0; j < tr[i].size; j++)
-		{
-			if (
-				tr[i].edges[j].from == from ||
-				tr[i].edges[j].to == from ||
-				tr[i].edges[j].from == to ||
-				tr[i].edges[j].to == to
-				) {
-				return i+1;
-			}
-		}
-	}
-	return 0;
-}
-
-int is_in(int* arr,int offset ,int target) {
-	for (int i = 0; i < offset; i++)
-	{
-		if (arr[i] == target)	//스택에서 꺼낸 값이 방문한적 있는 값이면 false
-		{
-			return 1;
-		}
-	}
-	return 0;
-}
-
-int is_tree(Graph08 graph) {
-	StackType st;
-	int visited[100];
-	element cur;
-	int a=0;
-	int prev = -1;
-
-	init(&st);
-	push(&st, graph.edges[0].from);
-
-	while (!is_empty(&st)) {
-		cur = pop(&st);
-
-		if(is_in(visited, a, cur)) return 0;
-		
-		for (int i = 0; i < graph.size; i++)
-		{
-			if (graph.edges[i].from == cur && !is_in(visited, a, graph.edges[i].to))
-			{
-				push(&st, graph.edges[i].to);
-			}
-			if (graph.edges[i].to == cur && !is_in(visited, a, graph.edges[i].from))
-			{
-				push(&st, graph.edges[i].from);
-			}
-		}
-		visited[a++] = cur;
-		prev = cur;
-	}
-
-	return 1;
-}
-
-//typedef int element;
-int main() {
-	int ver_size, edg_size;
-	int from, to;
-
-	init_graphs();
-
-	printf("정점/간선 개수 : ");
-	scanf("%d %d",&ver_size,&edg_size);
-
-	int tmp;
-	for (int i = 0; i < edg_size; i++)
-	{
-		scanf("%d %d", &from, &to);
-
-		if (tmp = find_graph_idx(from, to)) {	
-			//요소가 겹치는 트리가 있다면, 해당 트리에 간선 추가
-			tr[tmp - 1].edges[tr[tmp - 1].size].from = from;
-			tr[tmp - 1].edges[tr[tmp - 1].size].to= to;
-			tr[tmp - 1].size++;
-		}
-		else {	
-			//요소가 겹치는 트리가 없다면 트리를 새로 생성
-			tr[tree_num].edges[0].from = from;
-			tr[tree_num].edges[0].to = to;
-			tr[tree_num].size++;
-			tree_num++;
-		}
-	}
-
-	int cnt=0;
-	for (int i = 0; i < tree_num; i++)
-	{
-		if (is_tree(tr[i])) {
-			cnt++;
-		}
-	}
-
-	printf("%d", cnt);
-}
+////pr08 - 배열에 동적할당 후 트리 개수 찾는 버전
+//
+//int main() {
+//	int ver_size, edg_size;
+//	int from, to;
+//	TreeNode** table;
+//
+//	printf("정점/간선 개수 : ");
+//	scanf("%d %d",&ver_size,&edg_size);
+//
+//	table = (TreeNode**)malloc(ver_size * sizeof(TreeNode*));
+//	
+//	for (int i = 0; i < ver_size; i++)
+//	{
+// 		table[i] = (TreeNode*)malloc(sizeof(TreeNode));
+//		table[i]->data = i+1;
+//		table[i]->left = NULL;
+//		table[i]->right = NULL;
+//	}
+//
+//	int tmp;
+//	for (int i = 0; i < edg_size; i++) {
+//		scanf("%d %d", &from, &to);
+//		if (table[from - 1]->left) table[from - 1]->right = table[to - 1];
+//		else table[from - 1]->left = table[to - 1];
+//	}
+//	//트리생성끝
+//
+//	int visited[100] = { 0, };
+//	StackType st;
+//	init(&st);
+//	TreeNode* cur;
+//	int cnt=0;
+//
+//	for (int i = 0; i < ver_size; i++)
+//	{
+//		if (visited[i]) {
+//			continue;
+//		}
+//
+//		push(&st, table[i]);
+//		while (!is_empty(&st)) {
+//			cur = pop(&st);
+//			visited[cur->data - 1] = 1;
+//			/*for (int j = 0; j < ver_size; j++)
+//			{
+//				if (
+//						visited[j] &&
+//						(
+//							cur->left->data == j + 1 ||
+//							cur->right->data == j + 1
+//						)
+//					) break;
+//			}*/
+//			if (cur->left) push(&st, cur->left);
+//			if (cur->right) push(&st, cur->right);
+//		}
+//
+//		cnt++;
+//	}
+//
+//	printf("%d", cnt);
+//}
 
 /*
 6 4
 1 2
 1 3
 2 4
+5 6
+>2
+
+7 4
+1 2
+1 3
+4 5
+6 7
+
+6 3
+1 2
+1 3
+5 6
+>2
+
+6 4
+1 2
+1 3
+2 3
 5 6
 >2
 
@@ -402,4 +485,70 @@ int main() {
 7 8
 3 8
 >0
+*/
+
+//pr09
+
+
+int main() {
+	int island_num;
+	printf("섬의 개수 : ");
+	scanf("%d", &island_num);
+	
+	printf("섬번호, 늑대(W)|양(S), 마리, 건널다리\n");
+	int island_id, ani_type, quantity, parent;
+
+	TreeNode** island_table = (TreeNode**)malloc(sizeof(TreeNode*) * island_num);
+	island_table[0] = (TreeNode*)malloc(sizeof(TreeNode));
+	island_table[0]->island.island_id = 1;
+	island_table[0]->island.ani_type = 's';
+	island_table[0]->island.quantity = 0;
+	island_table[0]->island.parent = -1;
+	island_table[0]->left = NULL;
+	island_table[0]->right = NULL;
+
+	//섬들 생성
+	for (int i = 1; i < island_num; i++)
+	{
+		scanf("%d %c %d %d", &island_id, &ani_type, &quantity, &parent);
+		island_table[i] = (TreeNode*)malloc(sizeof(TreeNode));
+		island_table[i]->island.island_id = island_id;
+		island_table[i]->island.ani_type = ani_type;
+		island_table[i]->island.quantity = quantity;
+		island_table[i]->island.parent = parent;
+		island_table[i]->left = NULL;
+		island_table[i]->right = NULL;
+	}
+	
+	//섬들 연결
+	for (int i = 0; i < island_num; i++)
+	{
+		for (int j = 0; j < island_num; j++)
+		{
+			if (island_table[i]->left == NULL && 
+				island_table[j]->island.parent == island_table[i]->island.island_id) {
+				island_table[i]->left = island_table[j];
+			}
+			else if (island_table[j]->island.parent == island_table[i]->island.island_id) {
+				island_table[i]->right= island_table[j];
+				break;
+			}
+		}
+	}
+
+	TreeNode* root;
+	root = island_table[0];
+	root->left = NULL;
+	root->right = NULL;
+
+	printf("%d", root);
+}
+
+/*
+4
+1 s 0 -1
+2 w 50 1
+3 s 10 1
+4 s 100 3
+>>60
 */
