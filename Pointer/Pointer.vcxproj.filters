@@ -22,6 +22,9 @@
     <Filter Include="소스 파일\stack">
       <UniqueIdentifier>{e9ef34f4-ba8c-41c3-8ec1-3a1430cc6b73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\tree">
+      <UniqueIdentifier>{c2515152-2971-4264-8c6e-2ec808ad5e9e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="playground.c">
@@ -76,7 +79,10 @@
       <Filter>소스 파일\stack</Filter>
     </ClCompile>
     <ClCompile Include="main_Tree.cpp">
-      <Filter>소스 파일\stack</Filter>
+      <Filter>소스 파일\tree</Filter>
+    </ClCompile>
+    <ClCompile Include="main_Tree2.cpp">
+      <Filter>소스 파일\tree</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

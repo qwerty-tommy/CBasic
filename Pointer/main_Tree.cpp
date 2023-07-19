@@ -1,3 +1,5 @@
+//트리, 트리순회
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <malloc.h>
@@ -489,6 +491,44 @@
 
 //pr09
 
+//void post_traverse(TreeNode* root) {
+//	element buf[MAX_SIZE];
+//	StackType st;
+//	init(&st);
+//	
+//	TreeNode* cur = root;
+//	int i = 0;
+//	do
+//	{
+//		if (cur != NULL) {
+//			if (cur->left != NULL) push(&st, cur->left);
+//			buf[i++] = cur;
+//			cur = cur->right;
+//		}
+//		else {
+//			if (is_empty(&st)) break;
+//			cur = pop(&st);
+//		}
+//	} while (1);
+//	
+//	for (int i = 0; i < MAX_SIZE; i++)
+//	{
+//		printf("%c->",buf[MAX_SIZE - i-1]->data);
+//	}
+//	printf("\b\b ");
+//}
+
+int sheep_cal(TreeNode* cur) {
+	int res=0;
+
+	if (cur->left) res += sheep_cal(cur->left);
+	if (cur->right) res += sheep_cal(cur->right);
+
+	if (cur->island.ani_type == 'w') res -= cur->island.quantity;
+	else res += cur->island.quantity;
+
+	return res > 0 ? res : 0;
+}
 
 int main() {
 	int island_num;
@@ -531,24 +571,20 @@ int main() {
 			}
 			else if (island_table[j]->island.parent == island_table[i]->island.island_id) {
 				island_table[i]->right= island_table[j];
-				break;
 			}
 		}
 	}
 
 	TreeNode* root;
 	root = island_table[0];
-	root->left = NULL;
-	root->right = NULL;
 
-	printf("%d", root);
+	printf("살아남은 양 : %d 마리",sheep_cal(root));
 }
 
 /*
 4
-1 s 0 -1
 2 w 50 1
 3 s 10 1
-4 s 100 3
+4 s 100 2
 >>60
 */

@@ -3,10 +3,9 @@
 #define CircularQueue
 
 #define MAX_QUEUE_SIZE 30
+#include "tree_Node.h"
 
-typedef struct {
-	int time;
-}element;
+typedef TreeNode* element;
 
 typedef struct {
 	element queue[MAX_QUEUE_SIZE];
