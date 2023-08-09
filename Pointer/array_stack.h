@@ -5,8 +5,6 @@
 
 #include "tree_Node.h"
 
-
-//typedef TreeNode* element;
 typedef TreeNode* element;
 
 typedef struct {
@@ -17,7 +15,7 @@ typedef struct {
 void init(StackType* s);
 int is_empty(StackType* s);
 int is_full(StackType* s);
-void push(StackType* s,element item);
+void push(StackType* s, element item);
 element pop(StackType* s);
 element peek(StackType* s);
 

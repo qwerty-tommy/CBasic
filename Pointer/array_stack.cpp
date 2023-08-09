@@ -14,7 +14,7 @@ int is_full(StackType* s) {
 	return (s->top == (MAX_STACK_SIZE - 1));
 }
 
-void push(StackType* s,element item) {
+void push(StackType* s, element item) {
 	if (is_full(s)) {
 		fprintf(stderr, "stack full err\n");
 		return;

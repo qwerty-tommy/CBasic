@@ -2,7 +2,7 @@
 #ifndef CircularQueue
 #define CircularQueue
 
-#define MAX_QUEUE_SIZE 30
+#define MAX_QUEUE_SIZE 128
 #include "tree_Node.h"
 
 typedef TreeNode* element;
