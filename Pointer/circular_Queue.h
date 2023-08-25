@@ -5,7 +5,7 @@
 #define MAX_QUEUE_SIZE 128
 #include "tree_Node.h"
 
-typedef TreeNode* element;
+typedef int element;
 
 typedef struct {
 	element queue[MAX_QUEUE_SIZE];

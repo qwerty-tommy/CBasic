@@ -28,6 +28,12 @@
     <Filter Include="소스 파일\priority_queue%28heap%29">
       <UniqueIdentifier>{b93e7f0f-2d22-45d4-b35d-1bbc8ef8bfc8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\avl_tree">
+      <UniqueIdentifier>{c7bb73b1-38f4-47ff-a139-0bc158bb5b6d}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\sort">
+      <UniqueIdentifier>{492075e0-488f-4412-b6c4-ee325b739545}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="playground.c">
@@ -99,6 +105,18 @@
     <ClCompile Include="main_Priority_Queue.cpp">
       <Filter>소스 파일\priority_queue%28heap%29</Filter>
     </ClCompile>
+    <ClCompile Include="main_AVL_Tree.cpp">
+      <Filter>소스 파일\avl_tree</Filter>
+    </ClCompile>
+    <ClCompile Include="avl_Tree.cpp">
+      <Filter>소스 파일\avl_tree</Filter>
+    </ClCompile>
+    <ClCompile Include="sort.cpp">
+      <Filter>소스 파일\sort</Filter>
+    </ClCompile>
+    <ClCompile Include="main_Sort.cpp">
+      <Filter>소스 파일\sort</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="my_String.h">
@@ -111,6 +129,15 @@
       <Filter>헤더 파일</Filter>
     </ClInclude>
     <ClInclude Include="tree_Node.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="priority_Queue.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="avl_Tree.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="sort.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
   </ItemGroup>

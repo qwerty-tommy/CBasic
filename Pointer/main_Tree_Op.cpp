@@ -260,138 +260,138 @@ card
 
 //이진탐색트리
 
-void menu() {
-	printf("***Std-Info search prog***\n");
-	printf("=======================\n");
-	printf("1. Input\n");
-	printf("2. Delete\n");
-	printf("3. Search\n");
-	printf("4. Print(Order by Std-ID)\n");
-	printf("5. Total Std num\n");
-	printf("6. 1st Std-Info\n");
-	printf("7. Std Average score\n");
-	printf("8. Init\n");
-	printf("9. Exit\n");
-	printf("=======================\n");
-	printf("Sel : ");
-}
-
-Element search(TreeNode* root, Element key) {
-	TreeNode* cur = root;
-	Element tmp;
-	tmp.ID = -1;
-
-	while (1)
-	{
-		if (!cur) return tmp;
-		if (cur->data.ID == key.ID) return cur->data;
-		if (cur->data.ID> key.ID) cur = cur->left;
-		else cur = cur->right;
-	}
-}
-
-void print_node(Element e) {
-	printf("%d\t%s\t%s\t%d\n",e.ID,e.name,e.department,e.score);
-}
-
-void print_node_inorder(TreeNode* root) {
-	TreeNode* cur=root;
-
-	if(cur->left) print_node_inorder(cur->left);
-	print_node(cur->data);
-	if (cur->right) print_node_inorder(cur->right);
-}
-
-Element get_max(TreeNode* root) {
-	TreeNode* cur=root;
-	StackType st;
-	Element max_tmp=root->data;
-
-	init(&st);
-	push(&st, cur);
-	while (!is_empty(&st)) {
-		cur=pop(&st);
-
-		if (cur->data.score > max_tmp.score) max_tmp = cur->data;
-
-		if (cur->right) push(&st,cur->right);
-		if (cur->left) push(&st,cur->left);
-	}
-
-	return max_tmp;
-}
-
-int get_total(TreeNode* root) {
-	TreeNode* cur = root;
-	int sum = cur->data.score;
-
-	if (cur->left) sum+= get_total(cur->left);
-	if (cur->right) sum+= get_total(cur->right);
-	return sum;
-}
-
-
-int main() {
-	TreeNode* root=NULL;
-	Element tmp;
-	int sel;
-
-	while(1){
-		menu();
-		scanf("%d", &sel);
-		switch (sel)
-		{
-		case 1:
-			printf("ID : ");
-			scanf("%d", &tmp.ID);
-			printf("Name : ");
-			scanf("%s", tmp.name);
-			printf("Department : ");
-			scanf("%s", tmp.department);
-			printf("Score : ");
-			scanf("%d", &tmp.score);
-			insert_node(&root, tmp);
-			break;
-		case 2:
-			printf("ID : ");
-			scanf("%d", &tmp.ID);
-			delete_node(&root, tmp);
-			break;
-		case 3:
-			printf("ID : ");
-			scanf("%d", &tmp.ID);
-			tmp = search(root, tmp);
-			if (tmp.ID == -1) printf("No data..\n");
-			else print_node(tmp);
-			break;
-		case 4:
-			if (root == NULL) printf("Empty");
-			else {
-				printf("Std-info list\n");
-				print_node_inorder(root);
-				printf("\n");
-			}
-			break;
-		case 5:
-			printf("Total Std num : %d\n", get_node_count(root));
-			break;
-		case 6:
-			printf("1st Std-Info\n");
-			print_node(get_max(root));
-			break;
-		case 7:
-			printf("Average : %d\n", get_total(root) / get_node_count(root));
-			break;
-		case 8:
-			root = NULL;
-			break;
-		case 9:
-			return 0;
-		default:
-			break;
-		}
-	}
-}
+//void menu() {
+//	printf("***Std-Info search prog***\n");
+//	printf("=======================\n");
+//	printf("1. Input\n");
+//	printf("2. Delete\n");
+//	printf("3. Search\n");
+//	printf("4. Print(Order by Std-ID)\n");
+//	printf("5. Total Std num\n");
+//	printf("6. 1st Std-Info\n");
+//	printf("7. Std Average score\n");
+//	printf("8. Init\n");
+//	printf("9. Exit\n");
+//	printf("=======================\n");
+//	printf("Sel : ");
+//}
+//
+//Element search(TreeNode* root, Element key) {
+//	TreeNode* cur = root;
+//	Element tmp;
+//	tmp.ID = -1;
+//
+//	while (1)
+//	{
+//		if (!cur) return tmp;
+//		if (cur->data.ID == key.ID) return cur->data;
+//		if (cur->data.ID> key.ID) cur = cur->left;
+//		else cur = cur->right;
+//	}
+//}
+//
+//void print_node(Element e) {
+//	printf("%d\t%s\t%s\t%d\n",e.ID,e.name,e.department,e.score);
+//}
+//
+//void print_node_inorder(TreeNode* root) {
+//	TreeNode* cur=root;
+//
+//	if(cur->left) print_node_inorder(cur->left);
+//	print_node(cur->data);
+//	if (cur->right) print_node_inorder(cur->right);
+//}
+//
+//Element get_max(TreeNode* root) {
+//	TreeNode* cur=root;
+//	StackType st;
+//	Element max_tmp=root->data;
+//
+//	init(&st);
+//	push(&st, cur);
+//	while (!is_empty(&st)) {
+//		cur=pop(&st);
+//
+//		if (cur->data.score > max_tmp.score) max_tmp = cur->data;
+//
+//		if (cur->right) push(&st,cur->right);
+//		if (cur->left) push(&st,cur->left);
+//	}
+//
+//	return max_tmp;
+//}
+//
+//int get_total(TreeNode* root) {
+//	TreeNode* cur = root;
+//	int sum = cur->data.score;
+//
+//	if (cur->left) sum+= get_total(cur->left);
+//	if (cur->right) sum+= get_total(cur->right);
+//	return sum;
+//}
+//
+//
+//int main() {
+//	TreeNode* root=NULL;
+//	Element tmp;
+//	int sel;
+//
+//	while(1){
+//		menu();
+//		scanf("%d", &sel);
+//		switch (sel)
+//		{
+//		case 1:
+//			printf("ID : ");
+//			scanf("%d", &tmp.ID);
+//			printf("Name : ");
+//			scanf("%s", tmp.name);
+//			printf("Department : ");
+//			scanf("%s", tmp.department);
+//			printf("Score : ");
+//			scanf("%d", &tmp.score);
+//			insert_node(&root, tmp);
+//			break;
+//		case 2:
+//			printf("ID : ");
+//			scanf("%d", &tmp.ID);
+//			delete_node(&root, tmp);
+//			break;
+//		case 3:
+//			printf("ID : ");
+//			scanf("%d", &tmp.ID);
+//			tmp = search(root, tmp);
+//			if (tmp.ID == -1) printf("No data..\n");
+//			else print_node(tmp);
+//			break;
+//		case 4:
+//			if (root == NULL) printf("Empty");
+//			else {
+//				printf("Std-info list\n");
+//				print_node_inorder(root);
+//				printf("\n");
+//			}
+//			break;
+//		case 5:
+//			printf("Total Std num : %d\n", get_node_count(root));
+//			break;
+//		case 6:
+//			printf("1st Std-Info\n");
+//			print_node(get_max(root));
+//			break;
+//		case 7:
+//			printf("Average : %d\n", get_total(root) / get_node_count(root));
+//			break;
+//		case 8:
+//			root = NULL;
+//			break;
+//		case 9:
+//			return 0;
+//		default:
+//			break;
+//		}
+//	}
+//}
 
 /*
 1

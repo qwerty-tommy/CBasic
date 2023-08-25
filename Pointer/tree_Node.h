@@ -1,3 +1,4 @@
+#pragma once
 #ifndef _TreeNode
 #define _TreeNode
 
